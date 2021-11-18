@@ -7,7 +7,7 @@ from collections import Counter
 Questions:
 453. Minimum Moves to Equal Array Elements
 665. Non-decreasing Array
-283.
+283. Move Zeroes
 """
 
 
@@ -54,3 +54,25 @@ class Solution:
     """
     def checkPossibility(self, nums: List[int]) -> bool:
         pass
+
+    """
+    283. Move Zeroes
+    https://leetcode.com/problems/move-zeroes/
+
+    >>> nums = [0,1,0,3,12]
+    >>> Solution().moveZeroes(nums)
+    >>> [1,3,12,0,0]
+    """
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # Keep swap the no_zero_value with the first_zero (Two pointer)
+        zero_1st_idx = 0
+
+        for p in range(len(nums)):
+            if nums[p] != 0:
+                nums[p], nums[zero_1st_idx] = nums[zero_1st_idx], nums[p]
+                zero_1st_idx += 1  # always point to the first zero of the array
+
+        return nums
