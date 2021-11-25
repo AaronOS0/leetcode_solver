@@ -11,6 +11,15 @@ Questions:
 661. Image Smoother
 598. Range Addition II
 419. Battleships in a Board
+
+54. Spiral Matrix
+59. Spiral Matrix II
+498.
+
+566.
+48.
+73.
+289.
 """
 
 
@@ -140,3 +149,58 @@ class Solution:
                 if board[i][j] == "X" and (i == 0 or board[i-1][j] == ".") and (j == 0 or board[i][j-1] == "."):
                     cnt += 1
         return cnt
+
+    """
+    54. Spiral Matrix
+    https://leetcode.com/problems/spiral-matrix/
+    >>> matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    >>> [1,2,3,6,9,8,7,4,5]
+    """
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+
+        res = []
+        if not matrix:
+            return []
+        # i,j are the coordinates of the current element
+        # di, dj are the move for the next elements
+        i, j, di, dj = 0, 0, 0, 1
+        m, n = len(matrix), len(matrix[0])
+
+        for v in range(m * n):
+            res.append(matrix[i][j])
+            matrix[i][j] = ''  # assign the visited elements a different character
+
+            # if the boundary is reached, change direction
+            if matrix[(i + di) % m][(j + dj) % n] == '':
+                # Top row:(0,1); Right column:(1,0); Bottom Row:(0,-1); Left column:(-1,0)
+                di, dj = dj, -di
+
+            # update the coordinates
+            i += di
+            j += dj
+
+        return res
+
+    """
+    59. Spiral Matrix II
+    https://leetcode.com/problems/spiral-matrix-ii/
+    Given a positive integer n, generate an n x n matrix filled with elements from 1 to n2 in spiral order.
+    >>> n = 3
+    >>> [[1,2,3],[8,9,4],[7,6,5]]
+    """
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        # initialize n x n matrix with ""
+
+        res = [[0]*n for _ in range(n)]
+        i, j, di, dj = 0, 0, 0, 1
+
+        for v in range(1, n * n+1):
+            res[i][j] = v
+            # Reach the boundary
+            if res[(i+di) % n][(j+dj) % n]:
+                di, dj = dj, -di
+
+            i += di
+            j += dj
+
+        return res
