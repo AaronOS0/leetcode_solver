@@ -23,6 +23,8 @@ class Solution:
     >>> Solution().findErrorNums(nums)
     >>> [2,3]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def findErrorNums(self, nums: List[int]) -> List[int]:
         missing_value = list(set(range(1, len(nums)+1)) - set(nums))[0]
         duplicate_value = Counter(nums).most_common(1)[0][0]
@@ -35,8 +37,10 @@ class Solution:
 
     >>> nums = [1,2,2,3,1,4,2]
     >>> Solution().findShortestSubArray(nums)
-    >>> [2,3]
+    >>> 6
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def findShortestSubArray(self, nums: List[int]) -> int:
         counts = Counter(nums).most_common()
         degree = counts[0][1]
@@ -52,6 +56,8 @@ class Solution:
 
         return res + 1
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def findShortestSubArray1(self, nums: List[int]) -> int:
         count_dic, left_dic, right_dic = {}, {}, {}
 
@@ -81,6 +87,8 @@ class Solution:
     >>> Solution().findDisappearedNumbers(nums)
     >>> [5,6]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         missing_sets = set(range(1, len(nums)+1)) - set(nums)
         return list(missing_sets)
@@ -93,6 +101,8 @@ class Solution:
     >>> Solution().findDuplicates(nums)
     >>> [2,3]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def findDuplicates(self, nums: List[int]) -> List[int]:
         return [num for num, counts in Counter(nums).items() if counts == 2]
 
@@ -104,6 +114,8 @@ class Solution:
     >>> Solution().firstMissingPositive(nums)
     >>> 2
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def firstMissingPositive(self, nums: List[int]) -> int:
         continuous_lst = range(1, len(nums)+1)
         missing = set(continuous_lst) - set(nums)
@@ -121,6 +133,8 @@ class Solution:
     >>> Solution().hIndex(nums)
     >>> 3
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def hIndex(self, citations: List[int]) -> int:
 
         return sum([i < j for i, j in enumerate(sorted(citations, reverse=True))])
