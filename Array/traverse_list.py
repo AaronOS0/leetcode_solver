@@ -103,8 +103,7 @@ class Solution:
     # Space Complexity: O(n)
     def maximumProduct(self, nums: List[int]) -> int:
         lst = sorted(nums, reverse=False)
-        res1 = lst[-1] * lst[-2] * lst[-3]  # all Positive
-        res2 = lst[0] * lst[1] * lst[2]  # all negative
-        res3 = lst[0] * lst[1] * lst[-1]  # Mix
-
-        return max([res1, res2, res3])
+        # There are 4 situation
+        res1 = lst[-1] * lst[-2] * lst[-3]  # 1.all positive; 2.all negative; 3.Mix1: negative + more than 1 positive
+        res2 = lst[0] * lst[1] * lst[-1]  # 4.Mix2: only 1 positive
+        return max([res1, res2])
