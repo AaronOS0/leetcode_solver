@@ -22,10 +22,8 @@ class Solution:
     >>> Solution().findMaxConsecutiveOnes(nums)
     >>> 3
     """
-    """
-    Time Complexity: O(n)
-    Space Complexity: O(1)
-    """
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
         max_num = 0
         num = 0
@@ -40,11 +38,9 @@ class Solution:
 
         return max(num, max_num)
 
-    """
-    Method1: Also can use regular expression to solve it.
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    """
+    # Method1: Also can use regular expression to solve it.
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def findMaxConsecutiveOnes1(self, nums: List[int]) -> int:
         import re
         # Transform the list to string
@@ -67,6 +63,8 @@ class Solution:
     >>> Solution().findPoisonedDuration(timeSeries, duration)
     >>> 4
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
         res = 0
         length = len(timeSeries)
@@ -86,8 +84,9 @@ class Solution:
     >>> nums = [2,2,3,1]
     >>> Solution().thirdMax(nums)
     >>> 1
-    
     """
+    # Time Complexity: O(nlog(n)), it depend on the built-in function(sorted)
+    # Space Complexity: O(n); if use ".sort()", it will be O(1).
     def thirdMax(self, nums: List[int]) -> int:
         sorted_set = sorted(list(set(nums)), reverse=True)
         return sorted_set[2] if len(sorted_set) >= 3 else sorted_set[0]
@@ -100,6 +99,8 @@ class Solution:
     >>> Solution().maximumProduct(nums)
     >>> 24
     """
+    # Time Complexity: O(nlog(n))
+    # Space Complexity: O(n)
     def maximumProduct(self, nums: List[int]) -> int:
         lst = sorted(nums, reverse=False)
         res1 = lst[-1] * lst[-2] * lst[-3]  # all Positive
