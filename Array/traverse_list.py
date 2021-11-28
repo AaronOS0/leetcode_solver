@@ -10,6 +10,7 @@ Questions:
 628. Maximum Product of Three Numbers
 """
 
+
 class Solution:
 
     """
@@ -20,6 +21,10 @@ class Solution:
     >>> nums = [1,1,0,1,1,1]
     >>> Solution().findMaxConsecutiveOnes(nums)
     >>> 3
+    """
+    """
+    Time Complexity: O(n)
+    Space Complexity: O(1)
     """
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
         max_num = 0
@@ -34,6 +39,24 @@ class Solution:
                 num = 0
 
         return max(num, max_num)
+
+    """
+    Method1: Also can use regular expression to solve it.
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
+    def findMaxConsecutiveOnes1(self, nums: List[int]) -> int:
+        import re
+        # Transform the list to string
+        nums_str = "".join(map(lambda x: str(x), nums))
+        # Form the regular expression
+        pattern = re.compile(r'1+')
+        # Get all matched sub str
+        matched_sub_str = re.findall(pattern, nums_str)
+        if matched_sub_str:
+            return max(map(lambda x: len(x), matched_sub_str))
+        else:
+            return 0
 
     """
     495. Teemo Attacking
