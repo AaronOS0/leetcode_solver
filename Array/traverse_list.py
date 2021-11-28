@@ -91,6 +91,20 @@ class Solution:
         sorted_set = sorted(list(set(nums)), reverse=True)
         return sorted_set[2] if len(sorted_set) >= 3 else sorted_set[0]
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def thirdMax1(self, nums: List[int]) -> int:
+        # Create 3 variables represent top3 large numbers
+        l1 = l2 = l3 = float('-inf')
+        for num in nums:
+            if num > l1:
+                l1, l2, l3 = num, l1, l2
+            elif l1 > num > l2:
+                l2, l3 = num, l2
+            elif l2 > num > l3:
+                l3 = num
+        return l3 if l3 > float('-inf') else l1
+
     """
     628. Maximum Product of Three Numbers
     Given an integer array nums, find three numbers whose product is maximum and return the maximum product.
