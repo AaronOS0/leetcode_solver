@@ -31,6 +31,39 @@ class Solution:
 
         return [duplicate_value, missing_value]
 
+    # Method1: Use buckets to store val
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def findErrorNums1(self, nums: List[int]) -> List[int]:
+        length = len(nums)
+        buckets = [0] * length
+
+        # only if the val exist, add 1 to the corresponding bucket
+        # val - index = 1
+        for val in nums:
+            buckets[val-1] += 1
+
+        for idx, bucket in enumerate(buckets):
+            if bucket == 0:
+                missing_val = idx + 1
+            elif bucket == 2:
+                duplicate_value = idx + 1
+
+        return [duplicate_value, missing_val]
+
+    # Method2: Mathematical way "summation"
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def findErrorNums2(self, nums: List[int]) -> List[int]:
+        length = len(nums)
+        original_sum = sum(nums)
+        none_dupl_sum = sum(set(nums))
+        none_miss_sum = sum(range(length+1))
+
+        duplicate_value = original_sum - none_dupl_sum
+        missing_val = none_miss_sum - none_dupl_sum
+        return [duplicate_value, missing_val]
+
     """
     697. Degree of an Array
     https://leetcode.com/problems/degree-of-an-array/
