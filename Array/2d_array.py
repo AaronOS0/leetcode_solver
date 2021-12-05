@@ -32,6 +32,8 @@ class Solution:
     >>> numRows = 5
     >>> [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
     """
+    # Time Complexity: O(n < n^2)
+    # Space Complexity: O(n < n^2)
     def generate(self, numRows: int) -> List[List[int]]:
         nums = [1]  # list for each layer of the Pascal's triangle
         lst = []  # The Pascal's triangle
@@ -55,6 +57,8 @@ class Solution:
     >>> rowIndex = 3
     >>> [1,3,3,1]
     """
+    # Time Complexity: O(n < n^2)
+    # Space Complexity: O(n < n^2)
     def getRow(self, rowIndex: int) -> List[int]:
         nums = [1]  # list for each layer of the Pascal's triangle
         lst = []  # The Pascal's triangle
@@ -77,6 +81,8 @@ class Solution:
     >>> img = [[100,200,100],[200,50,200],[100,200,100]]
     >>> [[137,141,137],[141,138,141],[137,141,137]]
     """
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n)
     def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
         m = len(img)  # row
         n = len(img[0])  # column
@@ -99,9 +105,11 @@ class Solution:
     >>> m = 3, n = 3, ops = [[2,2],[3,3]]
     >>> 4
     """
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n)
     # Memory Limit Exceeded
     def maxCount1(self, m: int, n: int, ops: List[List[int]]) -> int:
-        lst = [[0] * n for i in range(m)]  # initialize an nest list with all 0
+        lst = [[0] * n for i in range(m)]  # initialize a nest list with all 0
         max_val = len(ops)
         cnt = 0
 
@@ -123,6 +131,8 @@ class Solution:
         return cnt
 
     # Transform the question to a mathematical solution
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(1)
     def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
         if len(ops) == 0:
             return m * n
@@ -135,6 +145,8 @@ class Solution:
     >>> board = [["X",".",".","X"],[".",".",".","X"],[".",".",".","X"]]
     >>> 2
     """
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(1)
     def countBattleships(self, board: List[List[str]]) -> int:
         m = len(board)
         n = len(board[0])
