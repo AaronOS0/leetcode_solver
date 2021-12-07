@@ -14,7 +14,7 @@ Questions:
 
 54. Spiral Matrix
 59. Spiral Matrix II
-498.
+498. Diagonal Traverse
 
 566.
 48.
@@ -32,8 +32,8 @@ class Solution:
     >>> numRows = 5
     >>> [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
     """
-    # Time Complexity: O(n < n^2)
-    # Space Complexity: O(n < n^2)
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n^2)
     def generate(self, numRows: int) -> List[List[int]]:
         nums = [1]  # list for each layer of the Pascal's triangle
         lst = []  # The Pascal's triangle
@@ -57,8 +57,8 @@ class Solution:
     >>> rowIndex = 3
     >>> [1,3,3,1]
     """
-    # Time Complexity: O(n < n^2)
-    # Space Complexity: O(n < n^2)
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n^2)
     def getRow(self, rowIndex: int) -> List[int]:
         nums = [1]  # list for each layer of the Pascal's triangle
         lst = []  # The Pascal's triangle
@@ -82,7 +82,7 @@ class Solution:
     >>> [[137,141,137],[141,138,141],[137,141,137]]
     """
     # Time Complexity: O(n^2)
-    # Space Complexity: O(n)
+    # Space Complexity: O(n^2)
     def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
         m = len(img)  # row
         n = len(img[0])  # column
@@ -106,7 +106,7 @@ class Solution:
     >>> 4
     """
     # Time Complexity: O(n^2)
-    # Space Complexity: O(n)
+    # Space Complexity: O(>n^2)
     # Memory Limit Exceeded
     def maxCount1(self, m: int, n: int, ops: List[List[int]]) -> int:
         lst = [[0] * n for i in range(m)]  # initialize a nest list with all 0
@@ -168,6 +168,8 @@ class Solution:
     >>> matrix = [[1,2,3],[4,5,6],[7,8,9]]
     >>> [1,2,3,6,9,8,7,4,5]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
 
         res = []
@@ -200,6 +202,8 @@ class Solution:
     >>> n = 3
     >>> [[1,2,3],[8,9,4],[7,6,5]]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def generateMatrix(self, n: int) -> List[List[int]]:
         # initialize n x n matrix with ""
 
@@ -214,5 +218,43 @@ class Solution:
 
             i += di
             j += dj
+
+        return res
+
+    """
+    498. Diagonal Traverse
+    https://leetcode.com/problems/diagonal-traverse/
+    Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.
+    >>> mat = [[1,2,3],[4,5,6],[7,8,9]]
+    >>> [1,2,4,7,5,3,6,8,9]
+    """
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n^2)
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        m, n = len(mat), len(mat[0])
+
+        # empty mat
+        if not m or not n:
+            return []
+
+        res = []
+        diagonal_lst = []
+        for i in range(m + n - 1):
+            # calculate the coordinate of the start point of each diagonal
+            x = 0 if i < m else i - m + 1
+            y = i if i < m else m - 1
+
+            diagonal_lst.clear()
+
+            while x > -1 and y < n:
+                diagonal_lst.append(mat[x][y])
+                x -= 1
+                y += 1
+
+            # odd: reverse the diagonal, then save to the result
+            if i % 2:
+                res.extend(diagonal_lst[::-1])
+            else:
+                res.extend(diagonal_lst)
 
         return res
