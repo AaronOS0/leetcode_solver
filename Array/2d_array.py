@@ -16,7 +16,7 @@ Questions:
 59. Spiral Matrix II
 498. Diagonal Traverse
 
-566.
+566. Reshape the Matrix
 48.
 73.
 289.
@@ -241,20 +241,29 @@ class Solution:
         diagonal_lst = []
         for i in range(m + n - 1):
             # calculate the coordinate of the start point of each diagonal
-            x = 0 if i < m else i - m + 1
-            y = i if i < m else m - 1
+            x = 0 if i < n else i - n + 1
+            y = i if i < n else n - 1
 
             diagonal_lst.clear()
 
-            while x > -1 and y < n:
+            while x < m and y > -1:
                 diagonal_lst.append(mat[x][y])
-                x -= 1
-                y += 1
+                x += 1
+                y -= 1
 
-            # odd: reverse the diagonal, then save to the result
+            # Even: reverse the diagonal, then save to the result
             if i % 2:
-                res.extend(diagonal_lst[::-1])
-            else:
                 res.extend(diagonal_lst)
+            else:
+                res.extend(diagonal_lst[::-1])
 
         return res
+
+    """
+    566. Reshape the Matrix
+    https://leetcode.com/problems/reshape-the-matrix/
+    >>> mat = [[1,2],[3,4]], r = 1, c = 4
+    >>> [[1,2,3,4]]
+    """
+    # Time Complexity: O()
+    # Space Complexity: O()
