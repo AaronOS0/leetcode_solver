@@ -265,5 +265,14 @@ class Solution:
     >>> mat = [[1,2],[3,4]], r = 1, c = 4
     >>> [[1,2,3,4]]
     """
-    # Time Complexity: O()
-    # Space Complexity: O()
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        m, n = len(mat), len(mat[0])
+
+        if m * n != r * c:
+            return mat
+        # unpack to one row
+        one_row_lst = [y for x in mat for y in x]
+        return [one_row_lst[i:i+c] for i in range(0, m*n, c)]
+    
