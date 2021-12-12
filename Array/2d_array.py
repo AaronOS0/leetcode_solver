@@ -17,9 +17,9 @@ Questions:
 498. Diagonal Traverse
 
 566. Reshape the Matrix
-48.
-73.
-289.
+48. Rotate Image
+73. Set Matrix Zeroes
+289. Game of Life
 """
 
 
@@ -275,4 +275,93 @@ class Solution:
         # unpack to one row
         one_row_lst = [y for x in mat for y in x]
         return [one_row_lst[i:i+c] for i in range(0, m*n, c)]
-    
+
+    """
+    48. Rotate Image
+    https://leetcode.com/problems/rotate-image/
+    >>> matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    >>> [[7,4,1],[8,5,2],[9,6,3]]
+    """
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    # iterate each group of 4 cells every time
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix[0])
+        if not n:
+            return matrix
+
+        for i in range(n // 2 + n % 2):
+            for j in range(n // 2):
+                # always 4 elements: a, b, c, d = d, a, b, c
+                matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j], matrix[n - 1 - j][i] = \
+                matrix[n - 1 - j][i], matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j]
+
+    """
+    73. Set Matrix Zeroes 
+    https://leetcode.com/problems/set-matrix-zeroes/
+    >>> matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+    >>> [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+    """
+    # Time Complexity: O(m*n)
+    # Space Complexity: O(m+n)
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        m, n = len(matrix), len(matrix[0])
+        # store the position(x,y) of element( == 0)
+        zero_dict = {"x": [], "y": []}
+
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    zero_dict["x"].append(i)
+                    zero_dict["y"].append(j)
+        # rows: assign 0
+        for i in zero_dict["x"]:
+            matrix[i] = [0] * n
+
+        # columns: assign 0
+        for row in matrix:
+            for j in zero_dict["y"]:
+                row[j] = 0
+
+    """
+    289. Game of Life
+    https://leetcode.com/problems/game-of-life/
+    >>> board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+    >>> [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+    """
+    # Time Complexity: O(mn)
+    # Space Complexity: O(n)
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m, n = len(board), len(board[0])
+        sign_dict = {'die': [], 'live': []}
+
+        for i in range(m):
+            for j in range(n):
+                # find the valid neighbors of each cell
+                neighbors = [
+                    board[x][y]
+                    for x in (i-1, i, i+1)
+                    for y in (j-1, j, j+1)
+                    if 0 <= x < m and 0 <= y < n
+                ]
+                neighbors_cells = sum(neighbors)
+                # live cell neighbors - 1 because they are live
+                if board[i][j] and (neighbors_cells - 1 < 2 or neighbors_cells - 1 > 3):
+                    sign_dict['die'].append((i, j))
+
+                if not board[i][j] and neighbors_cells == 3:
+                    sign_dict['live'].append((i, j))
+
+        for die in sign_dict['die']:
+            board[die[0]][die[1]] = 0
+        for live in sign_dict['live']:
+            board[live[0]][live[1]] = 1
