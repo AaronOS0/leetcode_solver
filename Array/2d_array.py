@@ -299,6 +299,26 @@ class Solution:
                 matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j], matrix[n - 1 - j][i] = \
                 matrix[n - 1 - j][i], matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j]
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    # Step 1: Exchange the element by the diagonal(left top to right bottom)
+    # Step 2: Reverse each row of the matrix
+    def rotate1(self, matrix: List[List[int]]) -> None:
+        self.transpose(matrix)
+        self.reverse(matrix)
+
+    def transpose(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        for i in range(n):
+            for j in range(i + 1, n):  # the diagonal don't change
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+    def reverse(self, matrix: List[List[int]]) -> None:
+        for row in matrix:
+            row[:] = row[::-1]
+
+    # Additional Question: How about m x n?
+
     """
     73. Set Matrix Zeroes 
     https://leetcode.com/problems/set-matrix-zeroes/
