@@ -36,7 +36,7 @@ class Solution:
             if len(list(filter(lambda x: x[idx] == character, strs[1:]))) == n-1:
                 cnt += 1
             else:
-                return strs[0][:cnt] if cnt >= 0 else ""
+                return strs[0][:cnt]
 
         # if the first str have already traversed but not return
-        return strs[0][:cnt] if cnt >= 0 else ""
+        return strs[0][:cnt]
