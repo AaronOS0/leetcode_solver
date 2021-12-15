@@ -33,4 +33,4 @@ class Solution:
     # Space Complexity: O(1)
     def lengthOfLastWord(self, s: str) -> int:
         new_s = s.split()
-        return len(new_s[-1]) if new_s else 0
+        return len(new_s[-1])
