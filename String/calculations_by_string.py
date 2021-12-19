@@ -45,5 +45,22 @@ class Solution:
     >>> num1 = "456", num2 = "77"
     >>> "533"
     """
-    # Time Complexity: O()
-    # Space Complexity: O()
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def addStrings(self, num1: str, num2: str) -> str:
+        num1_lst, num2_lst = list(num1), list(num2)
+        carry, res = 0, []
+
+        while len(num2_lst) > 0 or len(num1_lst) > 0:
+            n1 = ord(num1_lst.pop()) - ord('0') if len(num1_lst) > 0 else 0
+            n2 = ord(num2_lst.pop()) - ord('0') if len(num2_lst) > 0 else 0
+
+            temp = n1 + n2 + carry
+            carry, remainder = divmod(temp, 10)
+            res.append(remainder)
+
+        if carry:
+            res.append(carry)
+
+        return ''.join([str(i) for i in res])[::-1]
+
