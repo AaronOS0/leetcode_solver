@@ -67,6 +67,8 @@ class Solution:
     >>> score = [10,3,8,9,4]
     >>> ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
     """
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def findRelativeRanks(self, score: List[int]) -> List[str]:
         lst = []
         desc_score = sorted(score, reverse=True)
@@ -81,3 +83,16 @@ class Solution:
             else:
                 lst.append(str(pos+1))
         return lst
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    # Use bucket to save each element
+    def findRelativeRanks1(self, score: List[int]) -> List[str]:
+        lst = [""] * len(score)
+        medal = ["Gold Medal", "Silver Medal", "Bronze Medal"]
+        desc_score = sorted(enumerate(score), key=lambda x: -x[1])
+
+        for i, (idx, _) in enumerate(desc_score):
+            lst[idx] = medal[i] if i < 3 else str(i + 1)
+        return lst
+
