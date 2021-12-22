@@ -66,6 +66,28 @@ class Solution:
 
         return idx == len_word
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    # Method: Sort dictionary in advance
+    def findLongestWord1(self, s: str, dictionary: List[str]) -> str:
+
+        # include 'apple' < 'bpple'
+        dictionary.sort(key=lambda x: (-len(x), x))
+
+        for word in dictionary:
+            if self.is_subsequence(s, word):
+                return word
+
+    # whether word is a subsequence of s
+    def is_subsequence(self, s, word):
+        idx = 0
+        len_s, len_word = len(s), len(word)
+        for i in range(len_s):
+            if idx < len_word and s[i] == word[idx]:
+                idx += 1
+
+        return idx == len_word
+
     """
     521. Longest Uncommon Subsequence I
     https://leetcode.com/problems/longest-uncommon-subsequence-i/
