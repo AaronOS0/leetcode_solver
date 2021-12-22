@@ -27,6 +27,21 @@ class Solution:
         res = int(reduce(lambda x, y: str(x)+str(y), digits)) + 1
         return list(map(int, str(res)))
 
+    # Method1:
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def plusOne1(self, digits: List[int]) -> List[int]:
+
+        n = len(digits)
+        for idx in range(n-1, -1, -1):
+            if digits[idx] != 9:
+                digits[idx] += 1
+                return digits
+            else:
+                digits[idx] = 0
+        # Eg.[9,9,9]
+        return [1] + n * [0]
+
     """
     67. Add Binary
     https://leetcode.com/problems/add-binary/
@@ -38,6 +53,17 @@ class Solution:
     def addBinary(self, a: str, b: str) -> str:
         # binary -> decimalism -> addition -> binary
         return bin(int(a, 2) + int(b, 2))[2:]
+
+    # Method1: Bit Calculations
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
+    def addBinary1(self, a, b) -> str:
+        x, y = int(a, 2), int(b, 2)
+        while y:
+            answer = x ^ y
+            carry = (x & y) << 1
+            x, y = answer, carry
+        return bin(x)[2:]
 
     """
     415. Add Strings
@@ -52,6 +78,7 @@ class Solution:
         carry, res = 0, []
 
         while len(num2_lst) > 0 or len(num1_lst) > 0:
+            # calculate the number in decimalism
             n1 = ord(num1_lst.pop()) - ord('0') if len(num1_lst) > 0 else 0
             n2 = ord(num2_lst.pop()) - ord('0') if len(num2_lst) > 0 else 0
 
