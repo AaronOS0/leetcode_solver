@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-from typing import List, Tuple, Union
 
-'''
+"""
 Description: Fractional Backpack
 args:
     goods:[(price, weight)...]
@@ -9,10 +8,10 @@ args:
 return:
     num_goods: the number of each goods
     val: total value of the bag
-'''
+"""
 
 
-def fractional_backpack(goods: List[Tuple], capacity: int) -> (List, Union[int, float]):
+def fractional_backpack(goods: list(tuple), capacity: int) -> (list, int | float):
     # initialize a list represent the number of each goods
     num_goods = [0 for _ in range(len(goods))]
     val = 0  # total value of the bag

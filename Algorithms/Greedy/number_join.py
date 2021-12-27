@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-from typing import List, Tuple, Dict, Optional, Callable
 from functools import cmp_to_key
 
-'''
+"""
 Description: Join number in a list to get the largest number
 args:
     lst: numbers in a list
 return:
     string: the largest number
-'''
+"""
 
 
 def xy_cmp(x: str, y: str) -> str:
@@ -20,7 +19,7 @@ def xy_cmp(x: str, y: str) -> str:
         return 0
 
 
-def number_join(lst: List) -> str:
+def number_join(lst: list) -> str:
     lst_str = list(map(str, lst))
     # cmp_to_key: compare every pair of number in the list, if return Ture(1), exchange the position
     lst_str.sort(key=cmp_to_key(xy_cmp), reverse=True)

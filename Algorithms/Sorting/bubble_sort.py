@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-from typing import List
 
-'''
+"""
 Key: Ordered and Disordered space/sub-list
-'''
+"""
 
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
 # Every time, move a largest element to the relative last
-def bubble_sort(lst: List) -> List:
+def bubble_sort(lst: list) -> list:
     n = len(lst)
     # Traverse totally (n - 1) times. Because the last element don't need to move
     for i in range(n - 1):
@@ -24,7 +23,7 @@ def bubble_sort(lst: List) -> List:
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
 # If the there is no exchange during a traverse, list is sorted.
-def bubble_sort_edition(lst: List) -> List:
+def bubble_sort_edition(lst: list) -> list:
     n = len(lst)
     for i in range(n - 1):
         exchange = False

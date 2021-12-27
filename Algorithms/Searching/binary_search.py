@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-from typing import List
 
 
 # Time Complexity: O(logn)
 # Space Complexity: O(1)
-def binary_search(lst: List, obj: int) -> int or str:
+def binary_search(lst: list, obj: int) -> int or str:
     left = 0
     right = len(lst) - 1  # right boundary
 

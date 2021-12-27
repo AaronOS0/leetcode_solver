@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-from typing import List
 
-'''
+"""
 Key: Ordered and Disordered space/sub-list
-'''
+"""
 
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
 # Every time, choose an element from the disordered space, insert it into ordered space
-def insert_sort(lst: List) -> List:
+def insert_sort(lst: list) -> list:
     n = len(lst)
     # Select from the second element
     for i in range(1, n):

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-from typing import List
 
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
-def linear_search(lst: List, obj: int) -> int or str:
+def linear_search(lst: list, obj: int) -> int or str:
     for idx, val in enumerate(lst):
         if val == obj:
             return idx

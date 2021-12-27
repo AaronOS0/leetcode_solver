@@ -1,17 +1,16 @@
 #!/usr/bin/env python
-from typing import List
 
-'''
+"""
 Description: Activity selection to reach the maximum number of activities
 args:
     activities: time[start, end) in a list
 return:
     plan: the activity plan
-'''
+"""
 
 
 class Solution:
-    def activity_selection(self, activities: List[tuple]) -> List[tuple]:
+    def activity_selection(self, activities: list[tuple]) -> list[tuple]:
         # sort activities by the end time; the activity that end earlier belong to the optimized solution
         activities.sort(key=lambda x: x[1])
         plan = [activities[0]]

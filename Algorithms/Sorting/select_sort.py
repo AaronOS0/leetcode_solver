@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-from typing import List
 
-'''
+"""
 Key: Ordered and Disordered space/sub-list
-'''
+"""
 
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(n)
 # Every time, select the relative minimum element to append into a new lst
-def select_sort(lst: List) -> List:
+def select_sort(lst: list) -> list:
     new_lst = []
     n = len(lst)
     for i in range(n):
@@ -22,7 +21,7 @@ def select_sort(lst: List) -> List:
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
 # Every time, select the relative minimum element in disordered sub-list, exchange with the last element of ordered list
-def select_sort_edition(lst: List) -> List:
+def select_sort_edition(lst: list) -> list:
     n = len(lst)
     for i in range(n - 1):
         min_loc = i
