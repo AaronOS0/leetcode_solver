@@ -80,6 +80,7 @@ class BST:
             self.pre_order(root.lchild)
             self.pre_order(root.rchild)
 
+    # in_order traversal will return an ordered sequence
     def in_order(self, root):
         if root:
             self.in_order(root.lchild)
