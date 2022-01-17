@@ -32,9 +32,25 @@ class Solution:
     >>> root = [1,null,2,3]
     >>> [3,2,1]
     """
-    # Time Complexity: O(n)
-    # Space Complexity: O(n)
+    # Time Complexity: O()
+    # Space Complexity: O()
+    # Recursion version
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        if not root:
+            return res
+
+        def recursion(root, res):
+            if root:
+                recursion(root.left, res)
+                recursion(root.right, res)
+                res.append(root.val)
+
+        recursion(root, res)
+        return res
+
+    # Iteration version
+    def postorderTraversal1(self, root: Optional[TreeNode]) -> List[int]:
         res, stack = [], [root]
         while stack:
             node = stack.pop()
@@ -51,7 +67,34 @@ class Solution:
     >>> [1,null,3,2,4,null,5,6]
     >>> [5,6,3,2,4,1]
     """
+    # Recursion version
     def postorder(self, root: 'Node') -> List[int]:
-        pass
+        res = []
+        # Empty tree
+        if not root:
+            return res
+
+        def recursion(root, res):
+            for child in root.children:
+                recursion(child, res)
+            res.append(root.val)
+
+        recursion(root, res)
+        return res
+
+    # Iteration version
+    def postorder1(self, root: 'Node') -> List[int]:
+        res = []
+        if not root:
+            return res
+
+        stack = [root]
+        while stack:
+            curr = stack.pop()
+            res.append(curr.val)
+            stack.extend(curr.children)
+
+        return res[::-1]
+
 
 
