@@ -35,6 +35,24 @@ class Solution:
     def strStr1(self, haystack: str, needle: str) -> int:
         return haystack.find(needle)
 
+    # Method1： KMP
+    # ToDo
+    # https://www.zhihu.com/question/21923021
+
+    # Method2： Slice
+    def strStr2(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+        else:
+            for i in range(len(haystack)):
+                if haystack[i] == needle[0]:
+                    # from the matched position, compare the same length of needle
+                    if haystack[i:i+len(needle)] == needle:
+                        return i
+                    else:
+                        continue
+            return -1
+
     """
     686. Repeated String Match
     https://leetcode.com/problems/repeated-string-match/
@@ -62,4 +80,4 @@ class Solution:
     # Time Complexity: O()
     # Space Complexity: O()
     def repeatedSubstringPattern(self, s: str) -> bool:
-        pass
+        return (s + s).find(s, 1) != len(s)
