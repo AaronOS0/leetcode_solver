@@ -65,8 +65,8 @@ in_order(root)
 def post_order(root):
     if root:
         post_order(root.lchild)
-        print(root.data, end=',')
         post_order(root.rchild)
+        print(root.data, end=',')
 
 
 print("\nPostorder:")
