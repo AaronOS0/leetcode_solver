@@ -1,24 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import re
-from typing import List
+from math import ceil
+from typing import List, Optional
 from collections import Counter
+from functools import reduce
+import operator
+import re
 
 
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        # Transform the list to string
-        nums_str = "".join(map(lambda x: str(x), nums))
-        # Form the regular expression
-        pattern = re.compile(r'1+')
-        # Get all matched sub str
-        matched_sub_str = re.findall(pattern, nums_str)
-        if matched_sub_str:
-            return max(map(lambda x: len(x), matched_sub_str))
-        else:
-            return 0
+    pass
 
-nums = []
-res = Solution().findMaxConsecutiveOnes(nums)
+
+res = Solution()
 print(res)
-
